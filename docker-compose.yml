@@ -5,9 +5,9 @@ services:
     build:
       context: ./Back-End
       dockerfile: Dockerfile
-    image: chaikub/my-backend_image:1.0
+    image: aitax/my-backend_image:1.0
   frontend:
     build:
       context: ./Front-End
       dockerfile: Dockerfile
-    image: chaikub/my-frontend_image:1.0
+    image: aitax/my-frontend_image:1.0

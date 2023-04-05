@@ -5,7 +5,7 @@ pipeline {
             stage('Initialize Stage') {
                 steps {
                     echo 'Initial : Delete containers and images'
-                     dir('SWDEV') {
+                     dir('devtool_week11') {
                         echo "Current path is  ${pwd()}"
                         sh 'docker-compose down --rmi all --volumes || true'
                      }
@@ -14,7 +14,7 @@ pipeline {
 
             stage('Build Stage'){
                 steps {
-                    dir('SWDEV') {
+                    dir('devtool_week11') {
                         echo "Current path is ${pwd()}"
                         sh "docker-compose build"
                     }
@@ -23,12 +23,12 @@ pipeline {
 
             stage('Push Stage'){
                 steps {
-                    dir('SWDEV') {
+                    dir('devtool_week11') {
                         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                             sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                         }
-                        sh 'docker push chaikub/my-backend_image:1.0'
-                        sh 'docker push chaikub/my-frontend_image:1.0'
+                        sh 'docker push aitax/my-backend_image:1.0'
+                        sh 'docker push aitax/my-frontend_image:1.0'
                     }
                 }
             }
